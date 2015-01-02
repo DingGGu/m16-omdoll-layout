@@ -1,0 +1,92 @@
+{@
+    $oPointModel = &getModel('point');
+}
+        <script>
+            jQuery(function() {
+                jQuery(".prof_nick>b").on("click", function () {
+                    jQuery("#top_hover_wrap").toggle("drop", {
+                        direction: "up"
+                    }, 300);
+                });
+            });
+        </script>
+<div id="top_wrap">
+    <div class="center_wrap">
+        <div class="logo"></div>
+        <ul class="top_favor">
+            <li><i class="fa fa-star"></i></li>
+            <li><a href="/?mid=notice_board&document_srl=446106">워크래프트3</a></li>
+            <li><a href="/files/util/m16l.zip"><b>M16 Loader</b></a></li>
+            <li><a href="/files/util/w3l-126.zip">War3 Loader</a></li>
+            <li><a href="/files/util/ChaosOne.zip">ChaosOne</a></li>
+        </ul>
+        <ul class="top_nav">
+            {@$idx = 1}
+            <!--@foreach($main_menu->list as $key => $val)-->
+            <!--@if($val['link'])-->
+            <!--<img src="/layouts/m16v2/skins/images/menu_l.png" alt="line" />-->
+            <!--@if($val['selected'])-->
+            {@ $menu_1depth = $val }
+            <!--@end-->
+            <li><a rel="dropmenu{$idx}" href="{$val['href']}">{$val['link']}</a></li>
+            {@$idx++}
+            <!--@endif-->
+            <!--@endforeach-->
+        </ul>
+        <span class="top_nav_browser_title">{$module_info->browser_title}</span>
+        <div class="top_prof_warp">
+            <!--@if(!$logged_info || !($logged_info->profile_image))-->
+            <img src="css/prof_img.jpg" alt="prof_img" />
+            <!--@else-->
+            <img src="{$logged_info->profile_image->src}" alt="prof_img" />
+            <!--@end-->
+        </div>
+        <span class="prof_nick">
+            <!--@if(!$logged_info)-->
+            <br />
+            <i>배틀넷 아이디로 로그인!</i><br />
+            <b>로그인</b><br />
+            <div id="top_hover_wrap">
+                <div class="top_hover_box">
+                    <form action="{getUrl('','act','procMemberLogin')}" method="post" class="top_hover_box_form">
+                        <input type="hidden" name="act" value="procMemberLogin" />
+                        <input class="thb_input" name="user_id" type="text" placeholder="아이디" />
+                        <input class="thb_input" name="password" type="password" placeholder="비밀번호" />
+
+                        <span class="thb_li"><a href="{getUrl('','mid','findpass')}">비밀번호 찾기</a></span>
+
+                        <button class="thb_btn thb_btn_c_mint" type="submit">로그인</button>
+                    </form>
+                </div>
+            </div>
+            <!--@else-->
+            <span class="top_black">{number_format($oPointModel->getPoint($logged_info->member_srl))}P</span><br />
+            <i>(#{$logged_info->uid})</i><br />
+            <b>{$logged_info->nick_name}</b>
+            <div id="top_hover_wrap">
+                <div class="top_hover_box">
+                    <span class="thb_username">어서오세요, <b>{$logged_info->nick_name}</b>님!</span>
+                    <!--@if($logged_info->is_admin=="Y" && !$site_module_info->site_srl)-->
+                    <a href="{getUrl('','module','admin')}" onclick="window.open(this.href);return false;">[{$lang->cmd_management}]</a>
+                    <!--@end-->
+                    <ul class="thb_usermenu">
+                        <!--@foreach($logged_info->menu_list as $key => $val)-->
+                        <li><a href="{getUrl('act',$key,'member_srl','')}" title="{Context::getLang($val)}">{Context::getLang($val)}</a></li>
+                        <!--@end-->
+                    </ul>
+                    <p class="thb_lastlogin">{$lang->last_login} <span>{zDate($logged_info->last_login, "Y-m-d H:i")}</span></p>
+                    <div class="thb_btn_wrap">
+                        <a href="{getUrl('mid', 'police', 'act','dispMyReport')}" class="thb_btn thb_btn_c_green">내 신고목록</a>
+                        <a href="{getUrl('act','dispMemberLogout')}" class="thb_btn thb_btn_c_red">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+            <!--@end-->
+        </span>
+    </div>
+</div>
+<div id="content_wrap">
+    <div class="banner_wrap center_wrap">
+        <img src="css/bn_01.png" />
+    </div>
+

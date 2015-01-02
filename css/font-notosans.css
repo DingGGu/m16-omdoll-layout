@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'NotoSans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/SourceHanSans-Regular.eot');
+    src: url('../fonts/SourceHanSans-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/SourceHanSans-Regular.woff') format('woff'),
+    url('../fonts/SourceHanSans-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansBold';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/SourceHanSans-Heavy.eot');
+    src: url('../fonts/SourceHanSans-Heavy.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/SourceHanSans-Heavy.woff') format('woff'),
+    url('../fonts/SourceHanSans-Heavy.otf') format('opentype');
+}
