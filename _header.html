@@ -1,18 +1,46 @@
 {@
     $oPointModel = &getModel('point');
 }
-        <script>
-            jQuery(function() {
-                jQuery(".prof_nick>b").on("click", function () {
-                    jQuery("#top_hover_wrap").toggle("drop", {
-                        direction: "up"
-                    }, 300);
-                });
+<script>
+    (function($){
+        $(function(){
+            $('#bnSlider').anythingSlider();
+            $("#top_hover_wrap").show("drop", {
+                direction: "up"
+            }, 300);
+
+            setTimeout(function () {
+                $("#top_hover_wrap").hide("drop", {
+                    direction: "up"
+                }, 300);
+            }, 3000);
+
+            $(".drop").on("mouseenter", function() {
+                var dropmenu = $(this).attr('rel');
+                $('#'+dropmenu).show("drop", {
+                    direction: "up"
+                }, 300);
             });
-        </script>
+
+            $(".drop").on("mouseleave", function() {
+                var dropmenu = $(this).attr('rel');
+                $('#'+dropmenu).hide("drop", {
+                    direction: "up"
+                }, 300);
+            });
+
+            $(".prof_nick > b").on("click", function () {
+                $("#top_hover_wrap").toggle("drop", {
+                    direction: "up"
+                }, 300);
+            });
+        });
+    })(jQuery);
+</script>
+
 <div id="top_wrap">
     <div class="center_wrap">
-        <div class="logo"></div>
+        <a href="{getUrl('','mid','Index')}"><div class="logo"></div></a>
         <ul class="top_favor">
             <li><i class="fa fa-star"></i></li>
             <li><a href="/?mid=notice_board&document_srl=446106">워크래프트3</a></li>
@@ -24,11 +52,29 @@
             {@$idx = 1}
             <!--@foreach($main_menu->list as $key => $val)-->
             <!--@if($val['link'])-->
-            <!--<img src="/layouts/m16v2/skins/images/menu_l.png" alt="line" />-->
             <!--@if($val['selected'])-->
             {@ $menu_1depth = $val }
             <!--@end-->
-            <li><a rel="dropmenu{$idx}" href="{$val['href']}">{$val['link']}</a></li>
+            <li class="drop" rel="dropmenu{$idx}">
+                <a href="{$val['href']}">{$val['link']}</a>
+                <div id="dropmenu{$idx}" class="dropmenudiv">
+                    <div class="boxBorder">
+                        <ul>
+                            {@ $menuIndex = 1;}
+                            <!--@foreach($val['list'] as $k => $v)-->
+                            <!--@if($v['text']!='')-->
+                            <li
+                            <!--@if($menuCount==$menuIndex)-->class="last"<!--@end-->><a href="{$v['href']}"
+                            <!--@if($v['open_window']=='Y')-->onclick="window.open(this.href);return false;"<!--@end-->
+                            >{$v['text']}</a></li>
+                            {@ $menuIndex++;}
+                            <!--@end-->
+                            <!--@end-->
+                        </ul>
+                    </div>
+                </div>
+
+            </li>
             {@$idx++}
             <!--@endif-->
             <!--@endforeach-->
@@ -53,8 +99,7 @@
                         <input class="thb_input" name="user_id" type="text" placeholder="아이디" />
                         <input class="thb_input" name="password" type="password" placeholder="비밀번호" />
 
-                        <span class="thb_li"><a href="{getUrl('','mid','findpass')}">비밀번호 찾기</a></span>
-
+                        <span class="thb_li"><a href="{getUrl('','act','dispMemberFindAccount')}">비밀번호 찾기</a></span>
                         <button class="thb_btn thb_btn_c_mint" type="submit">로그인</button>
                     </form>
                 </div>
@@ -87,6 +132,33 @@
 </div>
 <div id="content_wrap">
     <div class="banner_wrap center_wrap">
-        <img src="css/bn_01.png" />
+        <ul id="bnSlider">
+            <li><img src="css/bn_01.png" /></li>
+            <li>
+                <div class="chat_head" style="left: 80px; bottom: 10px;">
+                    <a href="{getUrl('','mid','attendance')}">출석</a>
+                </div>
+                <div class="chat">
+                    {@ $oMemberModel = &getModel('member');}
+                    <!--@if($logged_info->is_admin=='Y')-->
+                    {@ $chatkey = "da39a3ee5e6b4b0d3255bfef95601890afd80709";}
+                    <!--@elseif($logged_info->group_list[3205437])-->
+                    {@ $chatkey = "da39a3ee5e6b4b0d3255bfef95601890afd80709";}
+                    <!--@else-->
+                    {@ $chatkey = "d41d8cd98f00b204e9800998ecf8427e";}
+                    <!--@end-->
+                    {@ $chattime = time();}
+                    {@
+                    $fp = @fsockopen("ohcs.uu.gl", 80, $errno, $errstr, 2);
+                    if(!$fp) echo "채팅서버가 응답이 없습니다.";
+                    else echo '
+                    <script type="text/javascript"
+                            src="http://ohcs.uu.gl/ohcs.php?chat=m16&nick='.$logged_info->user_id.'&time='.$chattime.'&authkey='.md5($chatkey.$logged_info->user_id.$chattime).'&width=800&height=190"></script>
+                    ';
+                    }
+                </div>
+            </li>
+            <li><img src="css/bn_02.png" /></li>
+        </ul>
     </div>
 
