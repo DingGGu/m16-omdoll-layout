@@ -1,5 +1,7 @@
 {@
     $oPointModel = &getModel('point');
+    $oOmdollModel = &getModel('omdoll');
+    $perch_info = $oOmdollModel->getPersonalChannelByUid($logged_info->member_srl);
 }
 <script>
     (function($){
@@ -7,32 +9,32 @@
             $('#bnSlider').anythingSlider();
             $("#top_hover_wrap").show("drop", {
                 direction: "up"
-            }, 300);
+            }, 200);
 
             setTimeout(function () {
                 $("#top_hover_wrap").hide("drop", {
                     direction: "up"
-                }, 300);
+                }, 200);
             }, 3000);
 
             $(".drop").on("mouseenter", function() {
                 var dropmenu = $(this).attr('rel');
                 $('#'+dropmenu).show("drop", {
                     direction: "up"
-                }, 300);
+                }, 200);
             });
 
             $(".drop").on("mouseleave", function() {
                 var dropmenu = $(this).attr('rel');
                 $('#'+dropmenu).hide("drop", {
                     direction: "up"
-                }, 300);
+                }, 200);
             });
 
             $(".prof_nick > b").on("click", function () {
                 $("#top_hover_wrap").toggle("drop", {
                     direction: "up"
-                }, 300);
+                }, 200);
             });
         });
     })(jQuery);
@@ -58,6 +60,7 @@
             <li class="drop" rel="dropmenu{$idx}">
                 <a href="{$val['href']}">{$val['link']}</a>
                 <div id="dropmenu{$idx}" class="dropmenudiv">
+                    <div class="dropmenupd"></div>
                     <div class="boxBorder">
                         <ul>
                             {@ $menuIndex = 1;}
@@ -73,8 +76,8 @@
                         </ul>
                     </div>
                 </div>
-
             </li>
+            <span class="pd"></span>
             {@$idx++}
             <!--@endif-->
             <!--@endforeach-->
@@ -106,7 +109,10 @@
             </div>
             <!--@else-->
             <span class="top_black">{number_format($oPointModel->getPoint($logged_info->member_srl))}P</span><br />
-            <i>(#{$logged_info->uid})</i><br />
+            <i>(#{$logged_info->member_srl})</i><br />
+            <!--@if(!empty($perch_info))-->
+            <i><a href="{getUrl('mid','omdoll','act','dispOmdollPerChMain')}">(#{$perch_info})</a></i>&nbsp;
+            <!--@end-->
             <b>{$logged_info->nick_name}</b>
             <div id="top_hover_wrap">
                 <div class="top_hover_box">
@@ -158,7 +164,7 @@
                     }
                 </div>
             </li>
-            <li><img src="css/bn_02.png" /></li>
+            <a href="//ogame.ggu.la/"><li><img src="css/bn_02.png" /></li></a>
         </ul>
     </div>
 

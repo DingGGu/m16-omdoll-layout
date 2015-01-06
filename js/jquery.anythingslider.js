@@ -929,15 +929,15 @@
 		// Slideshow options
 		autoPlay            : true,     // If true, the slideshow will start running; replaces "startStopped" option
 		autoPlayLocked      : false,     // If true, user changing slides will not stop the slideshow
-		autoPlayDelayed     : false,     // If true, starting a slideshow will delay advancing slides; if false, the slider will immediately advance to the next slide when slideshow starts
+		autoPlayDelayed     : true,     // If true, starting a slideshow will delay advancing slides; if false, the slider will immediately advance to the next slide when slideshow starts
 		pauseOnHover        : true,      // If true & the slideshow is active, the slideshow will pause on hover
 		stopAtEnd           : false,     // If true & the slideshow is active, the slideshow will stop on the last page. This also stops the rewind effect when infiniteSlides is false.
 		playRtl             : false,     // If true, the slideshow will move right-to-left
 
 		// Times
-		delay               : 10000,      // How long between slideshow transitions in AutoPlay mode (in milliseconds)
-		resumeDelay         : 60000,     // Resume slideshow after user interaction, only if autoplayLocked is true (in milliseconds).
-		animationTime       : 1000,       // How long the slideshow transition takes (in milliseconds)
+		delay               : 30000,      // How long between slideshow transitions in AutoPlay mode (in milliseconds)
+		resumeDelay         : 600000,     // Resume slideshow after user interaction, only if autoplayLocked is true (in milliseconds).
+		animationTime       : 2000,       // How long the slideshow transition takes (in milliseconds)
 		delayBeforeAnimate  : 0,         // How long to pause slide animation before going to the desired slide (used if you want your "out" FX to show).
 
 /*

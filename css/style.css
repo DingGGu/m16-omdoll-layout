@@ -5,7 +5,7 @@
 html,body{width:100%;height:100%}
 html{overflow-y:scroll}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button{margin:0;padding:0}
-body,h1,h2,h3,h4,input,button{font-family:NotoSans,Dotum,돋움,Helvetica,AppleSDGothicNeo,sans-serif;font-size:12px;}
+body,h1,h2,h3,h4,pre,input,button,select,textarea{font-family:NotoSans,Dotum,돋움,Helvetica,AppleSDGothicNeo,sans-serif;}
 body{background-color:#fff;*word-break:break-all;-ms-word-break:break-all}
 img,fieldset,iframe{border:0 none}
 li{list-style:none}
@@ -89,14 +89,22 @@ table{border-collapse:collapse;border-spacing:0}
 #top_wrap .top_nav > li {
     position: relative;
     display: inline-block;
+    white-space: nowrap;
+}
+
+#top_wrap .top_nav > .pd {
     padding-right: 10px;
 }
 
 .dropmenudiv {
     position: absolute;
-    top: 24px;
+    top: 15px;
     left: -10px;
     display: none;
+}
+
+.dropmenudiv .dropmenupd {
+    height: 20px;
 }
 
 .dropmenudiv .boxBorder {
@@ -229,7 +237,7 @@ table{border-collapse:collapse;border-spacing:0}
 .thb_li { width:70px; padding: 0 8px; background:url(usermenu_li.png) no-repeat left 6px; text-align: left; font-size: 12px; }
 .thb_username { font-size: 16px; }
 .thb_usermenu { text-align: center; font-size: 12px; font-weight: bold; background-color: rgba(0, 0, 0, .07); line-height: 130%; padding: 5px; border-radius: 5px; margin: 5px 0;}
-.thb_usermenu li { display: inline-block; list-style:none;  width:70px; padding-left:8px; background:url(usermenu_li.png) no-repeat left 6px; text-align: left;}
+.thb_usermenu li { display: inline-block; list-style:none;  width:72px; padding-left:8px; background:url(usermenu_li.png) no-repeat left 6px; text-align: left;}
 .thb_lastlogin { font-size: 12px; }
 .thb_btn_wrap a { text-shadow: 0 0 3px #555555 !important; color: #ffffff !important; }
 .thb_btn_wrap a:hover { text-shadow: 0 0 3px #555555 !important; color: #ffffff !important; }
@@ -290,7 +298,6 @@ table{border-collapse:collapse;border-spacing:0}
     width: 1100px;
     overflow: hidden;
     padding: 10px;
-    min-height: 700px;
     margin: 0 auto;
     background-color: #ffffff;
     box-shadow: 0 2px 5px 0 #aaaaaa;
@@ -316,11 +323,30 @@ table{border-collapse:collapse;border-spacing:0}
     background: url('bot_bg.jpg') repeat-x;
     text-align: center;
     color: #f5f5f5;
+    text-shadow: 0 0 3px #555555;
     font-size: 9px;
+    font-weight: bold;
 }
 
 #footer_wrap span {
     font-size: 14px;
+}
+
+#footer_wrap ul {
+    display: inline;
+    background: rgba(0, 0, 0, .3);
+    padding: 3px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+#footer_wrap ul li {
+    display: inline-block;
+    padding: 4px;
+}
+
+#footer_wrap ul li a {
+    color: #ffffff;
 }
 
 /*
@@ -445,13 +471,13 @@ table{border-collapse:collapse;border-spacing:0}
     position: absolute;
     top: 0;
     left: 0;
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
 }
 
 .omdoll_list_content {
-    padding: 4px 5px 0 75px;
-    height: 65px;
+    padding: 4px 5px 0 70px;
+    height: 60px;
     box-sizing: border-box;
 }
 
@@ -459,15 +485,15 @@ table{border-collapse:collapse;border-spacing:0}
     position: absolute;
     background: #f0f0f0;
     bottom: 0;
-    left: 65px;
+    left: 60px;
     right: 0;
     padding: 3px 3px 3px 10px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .omdoll_title {
     display: block;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: bold;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -485,4 +511,138 @@ table{border-collapse:collapse;border-spacing:0}
 
 .fr {
     float: right;
+}
+
+/* HINT: asdasd */
+.omdoll_menu_title {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.omdoll_form {
+    background: url(form_bg.png) repeat;
+    width: 70%;
+    text-align: center;
+    margin: 20px auto 10px auto;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px 0 #cccccc;
+}
+
+.omdoll_form h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.omdoll_form p {
+
+}
+
+.omdoll_form .omdoll_input {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    padding: 5px 8px;
+    font-size: 15px;
+    box-shadow: 0 0 3px 0 #aaaaaa;
+    width: 300px;
+    transition: box-shadow .3s linear;
+    box-sizing: border-box;
+}
+
+.omdoll_form .omdoll_textarea {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    margin-top: 10px;
+    padding: 5px 8px;
+    font-size: 15px;
+    box-shadow: 0 0 3px 0 #aaaaaa;
+    resize: vertical;
+    width: 300px;
+    transition: box-shadow .3s linear;
+    box-sizing: border-box;
+}
+
+.omdoll_form .omdoll_button {
+    background-color: #4c669d;
+    border-radius: 5px;
+    border: 0;
+    margin-left: 5px;
+    outline: 0;
+    padding: 5px 16px;
+    font-size: 15px;
+    box-shadow: 0 0 3px 0 #aaaaaa;
+    color: #ffffff;
+    text-shadow: 0 1px 0 #1d1d1d;
+    font-weight: bold;
+}
+
+.omdoll_form .omdoll_button_submit {
+    background-color: #00618D;
+    padding: 5px 26px;
+}
+
+.omdoll_form .omdoll_select {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    padding: 4px 35px 4px 15px;
+    margin-right: 5px;
+    font-size: 15px;
+    box-shadow: 0 0 3px 0 #aaaaaa;
+    transition: box-shadow .3s linear;
+    -webkit-appearance: none;
+}
+
+.omdoll_form .omdoll_input:hover, .omdoll_form .omdoll_select:hover, .omdoll_form .omdoll_textarea:hover {
+    box-shadow: 0 0 3px 0 #aa3339;
+}
+
+.omdoll_form .omdoll_input:focus, .omdoll_form .omdoll_select:focus, .omdoll_form .omdoll_textarea:focus {
+    box-shadow: 0 0 3px 0 #008eaa;
+}
+
+.omdoll_form .omdoll_message {
+    position: relative;
+    width: 700px;
+    margin: 10px auto 20px auto;
+    padding: 10px 0;
+    background: url(form_bg.png) repeat;
+    box-shadow: 0 1px 3px 0 #cccccc;
+    transition: box-shadow .3s linear;
+}
+
+.omdoll_form .omdoll_message:hover {
+    box-shadow: 0 1px 3px 0 #2785cc;
+}
+
+.omdoll_form .omdoll_message:after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -10px;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: #f9f9f9 transparent;
+    display: block;
+    width: 0;
+}
+
+.omdoll_form .omdoll_message:before {
+    content: "";
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    margin-left: -11px;
+    border-style: solid;
+    border-width: 0 11px 11px;
+    border-color: #eaeaea transparent;
+    display: block;
+    width: 0;
 }
